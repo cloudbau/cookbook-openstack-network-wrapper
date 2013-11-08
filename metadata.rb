@@ -1,8 +1,8 @@
-name             'stackforge-havana'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
+name             'cloudbau-openstack-network-wrapper'
+maintainer       'Stephan Renatus'
+maintainer_email 's.renatus@cloudbau.de'
 license          'All rights reserved'
-description      'Installs/Configures stackforge-havana'
+description      'Installs/Configures stackforge networing for havana'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 
