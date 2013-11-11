@@ -1,4 +1,4 @@
-name             'cloudbau-openstack-network-wrapper'
+name             'stackforge-havana'
 maintainer       'Stephan Renatus'
 maintainer_email 's.renatus@cloudbau.de'
 license          'All rights reserved'
