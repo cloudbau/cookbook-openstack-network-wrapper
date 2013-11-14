@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: stackforge-havana
+# Cookbook Name:: openstack-network-wrapper
 # Recipe:: default
 #
 # Copyright 2013, YOUR_COMPANY_NAME

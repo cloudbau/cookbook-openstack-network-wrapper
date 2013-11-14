@@ -16,17 +16,17 @@ end
 
 rewind 'template[/etc/quantum/quantum.conf]' do
   source 'neutron.conf.erb'
-  cookbook 'stackforge-havana'
+  cookbook 'openstack-network-wrapper'
   path '/etc/neutron/neutron.conf'
 end
 
 rewind 'template[/etc/quantum/api-paste.ini]' do
-  cookbook 'stackforge-havana'
+  cookbook 'openstack-network-wrapper'
   path '/etc/neutron/api-paste.ini'
 end
 
 rewind 'template[/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini]' do
   source 'ovs_neutron_plugin.ini.erb'
-  cookbook 'stackforge-havana'
+  cookbook 'openstack-network-wrapper'
   path '/etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini'
 end
