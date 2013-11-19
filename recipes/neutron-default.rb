@@ -49,7 +49,12 @@ elsif main_plugin == "linuxbridge"
   rewind 'template[/etc/quantum/plugins/linuxbridge/linuxbridge_conf.ini]' do
     cookbook 'openstack-network-wrapper'
     source 'linuxbridge_conf.ini.erb'
-    path plugin_conffile_path 
+    path plugin_conffile_path
+  end
+
+  # Linux bridge doesn't get started automatically
+  rewind 'template[/etc/quantum/plugins/linuxbridge/linuxbridge_conf.ini]' do
+    notifies :restart, "service[quantum-plugin-linuxbridge-agent]", :delayed
   end
 else
   raise NotImplementedError.new("Only support: #{driver_map.values.join(", ")}")

@@ -24,8 +24,3 @@ platform_options["image_packages"].each do |pkg|
     action :upgrade
   end
 end
-
-
-rewind 'template[/etc/quantum/plugins/linuxbridge/linuxbridge_conf.ini]' do
-  notifies :restart, "service[quantum-plugin-linuxbridge-agent]", :delayed
-end
