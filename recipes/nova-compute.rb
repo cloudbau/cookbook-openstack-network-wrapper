@@ -3,9 +3,16 @@ include_recipe "openstack-compute::nova-common"
 
 # We don't want to install nova-compute-kvm because it's bring
 # a lot of unwanted dependencies e.g. nova-common, nova-compute ...
-rewind "package[nova-compute-kvm]" do
-  action :nothing
+if node["openstack"]["compute"]["libvirt"]["virt_type"] == "kvm"
+  rewind "package[nova-compute-kvm]" do
+    action :nothing
+  end
+elsif node["openstack"]["compute"]["libvirt"]["virt_type"] == "qemu"
+  rewind "package[nova-compute-qemu]" do
+    action :nothing
+  end
 end
+  
 
 rewind 'template[/etc/nova/rootwrap.d/api-metadata.filters]' do
   source 'rootwrap.d/api-metadata.filters.erb'

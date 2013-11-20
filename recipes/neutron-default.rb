@@ -44,6 +44,12 @@ if main_plugin == "openvswitch"
     source 'ovs_neutron_plugin.ini.erb'
     path plugin_conffile_path
   end
+
+  # OVS agent doesn't get started automatically
+  rewind 'template[/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini]' do
+    notifies :restart, "service[quantum-plugin-openvswitch-agent]", :delayed
+  end
+
 elsif main_plugin == "linuxbridge"
   plugin_conffile_path = '/etc/neutron/plugins/linuxbridge/linuxbridge_conf.ini'
   rewind 'template[/etc/quantum/plugins/linuxbridge/linuxbridge_conf.ini]' do
@@ -52,7 +58,7 @@ elsif main_plugin == "linuxbridge"
     path plugin_conffile_path
   end
 
-  # Linux bridge doesn't get started automatically
+  # Linux bridge agent doesn't get started automatically
   rewind 'template[/etc/quantum/plugins/linuxbridge/linuxbridge_conf.ini]' do
     notifies :restart, "service[quantum-plugin-linuxbridge-agent]", :delayed
   end
