@@ -33,7 +33,7 @@ reconnect_interval = 2
 #
 # Default: tenant_network_type = local
 # Example: tenant_network_type = gre
-tenant_type = <%= node["openstack"]["network"]["openvswitch"]["tenant_network_type"] %>
+tenant_network_type = <%= node["openstack"]["network"]["openvswitch"]["tenant_network_type"] %>
 
 # (ListOpt) Comma-separated list of
 # <physical_network>[:<vlan_min>:<vlan_max>] tuples enumerating ranges
