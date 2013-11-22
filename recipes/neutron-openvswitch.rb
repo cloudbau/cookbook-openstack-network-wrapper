@@ -17,9 +17,7 @@ service "openvswitch-switch" do
 end
 
 if !node['openstack']['network']['openvswitch']['use_source_version']
-  platform_options["quantum_openvswitch_packages"].each do |pkg|
-    rewind "package[#{pkg}]" do
-      notifies :restart, "service[openvswitch-switch]", :immediately
-    end
+  rewind "package[openvswitch-switch]" do
+    notifies :restart, "service[openvswitch-switch]", :immediately
   end
 end
