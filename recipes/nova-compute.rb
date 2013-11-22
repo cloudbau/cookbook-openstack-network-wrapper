@@ -12,7 +12,7 @@ elsif node["openstack"]["compute"]["libvirt"]["virt_type"] == "qemu"
     action :nothing
   end
 end
-  
+
 
 rewind 'template[/etc/nova/rootwrap.d/api-metadata.filters]' do
   source 'rootwrap.d/api-metadata.filters.erb'
@@ -27,4 +27,13 @@ end
 rewind 'template[/etc/nova/rootwrap.d/network.filters]' do
   source 'rootwrap.d/network.filters.erb'
   cookbook_name 'openstack-network-wrapper'
+end
+
+
+platform_options = node["openstack"]["compute"]["platform"]
+platform_options["cinder_volume_packages"].each do |pkg|
+  package pkg do
+    options platform_options["package_overrides"]
+    action :upgrade
+  end
 end
