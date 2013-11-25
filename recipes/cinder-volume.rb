@@ -3,9 +3,10 @@ driver = node["openstack"]["block-storage"]["volume"]["driver"]
 if driver == "cinder.volume.drivers.lvm.LVMISCSIDriver"
   vol_grp = node["openstack"]["block-storage"]["volume"]["volume_group"]
   stat_dir = node["openstack"]["block-storage"]["volume"]["state_path"]
-
   local_file = File.join(stat_dir, vol_grp)
-  size = ((`df -Pk #{stat_dir}`.split("\n")[1].split(" ")[3].to_i * 1024) * 0.90).to_i rescue 0
+
+  # FIXME: We should get the size of device that will end up containing local_file.
+  size = ((`df -Pk /`.split("\n")[1].split(" ")[3].to_i * 1024) * 0.90).to_i
 
   bash "create local volume file" do
     code "truncate -s #{size} #{local_file}"
