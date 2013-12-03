@@ -16,7 +16,5 @@ if not ["nicira", "plumgrid", "bigswitch", "linuxbridge"].include?(main_plugin)
 
   rewind 'execute[create external network bridge]' do
     command cmd
-    action :run
-    not_if "ovs-vsctl br-exists #{ext_bridge}"
   end
 end
