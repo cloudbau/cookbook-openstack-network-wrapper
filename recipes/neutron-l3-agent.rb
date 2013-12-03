@@ -10,14 +10,13 @@ if not ["nicira", "plumgrid", "bigswitch", "linuxbridge"].include?(main_plugin)
   cmd = "ovs-vsctl add-br #{ext_bridge}"
   # XXX(Mouad): If no external connection is required no need to add port
   # to iface, something that didn't occur to stackforge guys !!
-  if ext_bridge_iface.nil? or ext_bridge_iface.empty?
+  unless ext_bridge_iface.nil? or ext_bridge_iface.empty?
     cmd += " && ovs-vsctl add-port #{ext_bridge} #{ext_bridge_iface}"
   end
 
   rewind 'execute[create external network bridge]' do
     command cmd
     action :run
-    not_if "ovs-vsctl show | grep 'Bridge #{ext_bridge}'"
-    only_if "ip link show #{ext_bridge_iface}"
+    not_if "ovs-vsctl br-exists #{ext_bridge}"
   end
 end
