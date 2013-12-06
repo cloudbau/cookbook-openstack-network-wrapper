@@ -19,6 +19,12 @@ normal[:openstack][:network][:interface_driver] = 'neutron.agent.linux.interface
 normal[:openstack][:network][:dhcp][:scheduler] = 'neutron.scheduler.dhcp_agent_scheduler.ChanceScheduler'
 normal[:openstack][:network][:l3][:scheduler] = 'neutron.scheduler.l3_agent_scheduler.ChanceScheduler'
 
+# We want to be able to update quota.
+normal[:openstack][:network][:quota][:driver] = 'neutron.db.quota_db.DbQuotaDriver'
+
+# By default we want overlapping ips.
+normal[:openstack][:network][:allow_overlapping_ips] = "True"
+
 # ovs_neutron_plugin.ini
 normal[:openstack][:network][:openvswitch][:fw_driver] = 'neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver'
 
