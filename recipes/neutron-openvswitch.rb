@@ -16,7 +16,7 @@ service "openvswitch-switch" do
   action :nothing
 end
 
-if !node['openstack']['network']['openvswitch']['use_source_version']
+unless node['openstack']['network']['openvswitch']['use_source_version']
   rewind "package[openvswitch-switch]" do
     notifies :restart, "service[openvswitch-switch]", :immediately
   end
