@@ -1,6 +1,3 @@
-normal[:openstack][:release] = 'havana'
-normal[:openstack][:apt][:components] = [ 'precise-updates/havana', 'main' ]
-
 normal[:openstack][:network][:platform][:quantum_server_service] = 'neutron-server'
 normal[:openstack][:network][:platform][:quantum_openvswitch_agent_service] = 'neutron-plugin-openvswitch-agent'
 normal[:openstack][:network][:platform][:quantum_l3_agent_service] = 'neutron-l3-agent'
