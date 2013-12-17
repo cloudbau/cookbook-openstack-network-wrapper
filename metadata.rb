@@ -8,4 +8,3 @@ version          '0.2.0'
 
 depends 'openstack-common'
 depends 'openstack-network'
-depends 'openstack-dashboard'

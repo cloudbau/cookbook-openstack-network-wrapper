@@ -24,5 +24,3 @@ normal[:openstack][:network][:allow_overlapping_ips] = "True"
 
 # ovs_neutron_plugin.ini
 normal[:openstack][:network][:openvswitch][:fw_driver] = 'neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver'
-
-normal[:openstack][:dashboard][:platform][:horizon_packages] = %w{ lessc python-lesscpy openstack-dashboard }
