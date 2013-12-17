@@ -8,7 +8,6 @@ version          '0.2.0'
 
 depends 'openstack-common'
 depends 'openstack-network'
-depends 'openstack-image'
 depends 'openstack-block-storage'
 depends 'openstack-compute'
 depends 'openstack-dashboard'
