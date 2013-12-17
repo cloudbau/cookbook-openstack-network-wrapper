@@ -28,9 +28,4 @@ normal[:openstack][:network][:allow_overlapping_ips] = "True"
 # ovs_neutron_plugin.ini
 normal[:openstack][:network][:openvswitch][:fw_driver] = 'neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver'
 
-# nova.conf
-normal[:openstack][:compute][:network][:service_type] = 'quantum'
-normal[:openstack][:compute][:network][:quantum][:network_api_class] = 'nova.network.neutronv2.api.API'
-
-
 normal[:openstack][:dashboard][:platform][:horizon_packages] = %w{ lessc python-lesscpy openstack-dashboard }
