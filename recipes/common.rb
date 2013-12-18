@@ -1,18 +1,31 @@
+include_recipe 'openstack-network::common'
+
 link '/etc/quantum' do
   to '/etc/neutron'
 end
 
-include_recipe 'openstack-network::common'
+platform_options = node["openstack"]["network"]["platform"]
+platform_options["quantum_packages"].each do |pkg|
+  cloudbau_rewind "package[#{pkg}]" do
+    options platform_options["package_overrides"]
+    action :upgrade
+  end
+end
 
+# This is hard to keep up to date and it's not needed because
+# our debian packages contain already an up to date version
+# of this files.
 %w{
   remote_directory[/etc/quantum/rootwrap.d]
   template[/etc/quantum/rootwrap.conf]
+  template[/etc/quantum/policy.json]
 }.each do |noop|
   rewind noop do
     action :nothing
   end
   # unwind noop # remote resource completely
 end
+
 
 db_user = node["openstack"]["network"]["db"]["username"]
 db_pass = db_password "quantum"
@@ -37,7 +50,7 @@ driver_name = node["openstack"]["network"]["interface_driver"].split('.').last.d
 driver_map = node["openstack"]["network"]["interface_driver_map"]
 main_plugin = driver_map[driver_name]
 
-if main_plugin == "openvswitch" 
+if main_plugin == "openvswitch"
   plugin_conffile_path = '/etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini'
   rewind 'template[/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini]' do
     cookbook 'openstack-network-wrapper'
