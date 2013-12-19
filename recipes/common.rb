@@ -1,9 +1,5 @@
 include_recipe 'openstack-network::common'
 
-link '/etc/quantum' do
-  to '/etc/neutron'
-end
-
 platform_options = node["openstack"]["network"]["platform"]
 platform_options["quantum_packages"].each do |pkg|
   cloudbau_rewind "package[#{pkg}]" do
