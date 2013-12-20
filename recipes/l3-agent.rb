@@ -18,3 +18,7 @@ if not ["nicira", "plumgrid", "bigswitch", "linuxbridge"].include?(main_plugin)
     command cmd
   end
 end
+
+rewind "template[/etc/quantum/l3_agent.ini]" do
+  path "etc/neutron/l3_agent.ini"
+end
