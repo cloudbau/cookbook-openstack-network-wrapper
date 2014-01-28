@@ -15,4 +15,4 @@ pre-start script
   chown neutron:root /var/lib/neutron
 end script
 
-exec start-stop-daemon --start --chuid neutron --exec /opt/cloudbau/neutron-virtualenv/bin/neutron-server -- --config-file=/etc/neutron/neutron.conf  --log-file=/var/log/neutron/neutron-server.log --config-file=<%= @plugin_conffile_path %>
+exec start-stop-daemon --start --chuid neutron --exec /opt/cloudbau/neutron-virtualenv/bin/neutron-server -- --config-file=/etc/neutron/neutron.conf  --log-file=/var/log/neutron/neutron-server.log --config-file=<%= @plugin_conffile_path.join(" --config-file=") %>

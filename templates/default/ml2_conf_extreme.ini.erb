@@ -1,0 +1,10 @@
+[ml2_extreme]
+host_to_port=<%= node['openstack']['network']['ml2']['extreme']['host_to_port'].join(",") %>
+
+<% node['openstack']['network']['ml2']['extreme']['endpoints'].each_with_index do |endpoint, i| %>
+[ENDPOINT_<%= i %>]
+url=<%= endpoint['url'] %>
+username=<%= endpoint['username'] %>
+password=<%= endpoint['password'] %>
+api=<%= endpoint['api'] %>
+<% end %>
