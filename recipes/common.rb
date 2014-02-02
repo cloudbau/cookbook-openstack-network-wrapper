@@ -52,7 +52,7 @@ if (main_plugin == "openvswitch") || ml2_do_gre
   rewind 'template[/etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini]' do
     cookbook 'openstack-network-wrapper'
     source 'ovs_neutron_plugin.ini.erb'
-    path '/etc/neutron/plugins/linuxbridge/linuxbridge_conf.ini'
+    path '/etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini'
   end
 
   # OVS agent doesn't get started automatically
@@ -65,7 +65,7 @@ elsif (main_plugin == "linuxbridge") || ml2_do_vlan
   rewind 'template[/etc/quantum/plugins/linuxbridge/linuxbridge_conf.ini]' do
     cookbook 'openstack-network-wrapper'
     source 'linuxbridge_conf.ini.erb'
-    path '/etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini'
+    path '/etc/neutron/plugins/linuxbridge/linuxbridge_conf.ini'
   end
 
   # Linux bridge agent doesn't get started automatically
